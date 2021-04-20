@@ -1,0 +1,45 @@
+#include<iostream>
+#include<conio.h>
+
+using namespace std;
+
+void func1(int *vect, int izq, int der){
+  
+  int i = izq, j = der, temp;
+  int p = vect[(izq + der) / 2];
+  
+  while(i <= j){
+    while(vect[i] < p) i++;
+	while(vect[j] > p) j++;
+	
+	if(i <= j){
+	  temp = vect[i];
+	  vect[i] = vect[j];
+	  vect[j] = temp;
+	  i++;
+	  j--;  	
+	}	
+  } 
+  if(izq < j){
+    func1(vect, j, izq);	
+  } 
+  if(i < der){
+    func1(vect, j, izq);	
+  } 	
+}
+
+int main(){
+    
+    cout << "Este es el metodo Quicksort ordenado" << endl;
+    
+    int vect2[7] = {78, 16, -23, 8, 25, 99, 100};
+    
+    func1(vect2, 0, 7);
+	
+	for(int i = 0; i < 10; i++)
+	  cout << vect2[i] << " ";
+	  system("pause");
+	
+	getch();
+	return 0;
+}
